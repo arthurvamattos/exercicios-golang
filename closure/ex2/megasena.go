@@ -8,29 +8,27 @@ import (
 
 func main() {
 	
-	counter := megaSena()
-	fmt.Println(counter())
-	fmt.Println(counter())
-	fmt.Println(counter())
-	fmt.Println(counter())
-	fmt.Println(counter())
-	fmt.Println(counter())
-	fmt.Println(counter())
-	fmt.Println(counter())
-	fmt.Println(counter())
-	fmt.Println(counter())
+	sorteador := megaSena()
+	fmt.Println(sorteador())
+	fmt.Println(sorteador())
+	fmt.Println(sorteador())
+	fmt.Println(sorteador())
+	fmt.Println(sorteador())
+	fmt.Println(sorteador())
+	fmt.Println(sorteador())
+	fmt.Println(sorteador())
+	fmt.Println(sorteador())
+	fmt.Println(sorteador())
 }
-// 2. Faça um programa que utilize closures para gerar
-// sequências de 6 números pseudo-aleatórios não repetidos
-// (a cada 6 chamadas a sequência é reinicializada).
+
 func megaSena() func() int {
 	nums := make([]int, 0, 6)
 
 	return func() int {
+		newNum := createNew(nums)
 		if len(nums) > 5 {
 			nums = make([]int, 0, 6)
 		}
-		newNum := createNew(nums)
 		nums = append(nums, newNum)
 		return int(newNum)
 	}
@@ -40,7 +38,7 @@ func megaSena() func() int {
 func createNew(nums []int) int {
 	newNum := randInt(1, 61)
 	if contains(nums, newNum) {
-		createNew(nums)
+		newNum = createNew(nums)
 	}
 	return newNum
 }
