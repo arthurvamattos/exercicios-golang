@@ -45,7 +45,14 @@ func (f *fila) remover() {
 }
 
 func (f *fila) imprimir() {
-	fmt.Println(f.content)
+	var reverseContent []int
+
+	for _, n := range f.content {
+		reverseContent = append(reverseContent, 0)
+		copy(reverseContent[1:], reverseContent)
+		reverseContent[0] = n
+	}
+	fmt.Println(reverseContent)
 }
 
 func test(ds DataStructure) {
@@ -69,8 +76,10 @@ func test(ds DataStructure) {
 
 func main() {
 	p := pilha{}
+	fmt.Println("Pilha")
 	test(&p)
 	fmt.Println("------------------------")
 	f := fila{}
+	fmt.Println("Fila")
 	test(&f)
 }
