@@ -11,7 +11,7 @@ type sqrtError struct {
 }
 
 func (e *sqrtError) Error() string {
-    return fmt.Sprintf("%s : %f", e.prob, e.arg)
+    return fmt.Sprintf("%s: %f", e.prob, e.arg)
 }
 
 func Sqrt(x float64) (float64, error) {
